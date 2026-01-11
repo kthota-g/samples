@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 1
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -123,7 +123,7 @@ requires-dist = [
     { name = "google-adk", extras = ["a2a"], specifier = ">=1.22.0" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "pydantic", extras = ["email"], specifier = ">=2.12.3" },
-    { name = "ucp-sdk", editable = "../../../sdk/python" },
+    { name = "ucp-sdk", git = "https://github.com/Universal-Commerce-Protocol/python-sdk" },
     { name = "uvicorn", specifier = ">=0.35.0" },
 ]
 
@@ -2463,20 +2463,11 @@ wheels = [
 [[package]]
 name = "ucp-sdk"
 version = "0.1.0"
-source = { editable = "../../../sdk/python" }
+source = { git = "https://github.com/Universal-Commerce-Protocol/python-sdk#8896ad68e0c893e98389a7c3e7f05d9f0d01f0ec" }
 dependencies = [
     { name = "email-validator" },
     { name = "pydantic" },
 ]
-
-[package.metadata]
-requires-dist = [
-    { name = "email-validator", specifier = ">=2.0.0" },
-    { name = "pydantic", specifier = ">=2.5.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [{ name = "datamodel-code-generator", extras = ["http", "ruff"], specifier = ">=0.50.0" }]
 
 [[package]]
 name = "uritemplate"
