@@ -28,6 +28,7 @@ from a2a.utils import (
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from google.genai import types
+from ucp_sdk.models.schemas.shopping.payment_create_req import PaymentCreateRequest
 from ucp_sdk.models.schemas.shopping.types.payment_instrument import PaymentInstrument
 from ucp_sdk.models.schemas.ucp import ResponseCheckout as UcpMetadata
 from .constants import (
@@ -176,7 +177,7 @@ class ADKAgentExecutor(AgentExecutor):
         if key in data_part:
           value = data_part.pop(key)
           if key == UCP_PAYMENT_DATA_KEY:
-            payment_payload[key] = PaymentInstrument.model_validate(value)
+            payment_payload[key] = PaymentCreateRequest.model_validate(value)
           else:
             payment_payload[key] = value
 

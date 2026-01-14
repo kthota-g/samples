@@ -55,6 +55,10 @@ export interface PaymentInstrument extends PaymentMethod {
   credential: Credential;
 }
 
+export interface Payment {
+  instruments: PaymentInstrument[];
+}
+
 export interface ChatMessage {
   sender: Sender;
   text: string;
