@@ -20,7 +20,7 @@ import Header from './components/Header';
 import {appConfig} from './config';
 import {CredentialProviderProxy} from './mocks/credentialProviderProxy';
 
-import {ChatMessage, PaymentInstrument, Product, Sender} from './types';
+import {ChatMessage, Payment, PaymentInstrument, Product, Sender} from './types';
 
 const initialMessage: ChatMessage = {
   sender: Sender.MODEL,
@@ -167,13 +167,16 @@ function App() {
       userActionMessage,
     ]);
 
+    const payment: Payment = {
+      instruments: [paymentInstrument]
+    }
     try {
       const parts = [
         {type: 'data', data: {'action': 'complete_checkout'}},
         {
           type: 'data',
           data: {
-            'a2a.ucp.checkout.payment_data': paymentInstrument,
+            'a2a.ucp.checkout.payment': payment,
             'a2a.ucp.checkout.risk_signals': {'data': 'some risk data'},
           },
         },

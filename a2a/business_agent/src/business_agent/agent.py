@@ -293,9 +293,10 @@ async def complete_checkout(tool_context: ToolContext) -> dict:
         "status": "requires_more_info",
     }
 
+  payment_instruments = payment_data.get(UCP_PAYMENT_DATA_KEY).instruments
   try:
     task = mpp.process_payment(
-        payment_data[UCP_PAYMENT_DATA_KEY], payment_data[UCP_RISK_SIGNALS_KEY]
+        payment_instruments, payment_data[UCP_RISK_SIGNALS_KEY]
     )
 
     if task is None:
@@ -304,9 +305,7 @@ async def complete_checkout(tool_context: ToolContext) -> dict:
       )
 
     if task.status is not None and task.status.state == TaskState.completed:
-      payment_instrument = payment_data.get(UCP_PAYMENT_DATA_KEY)
-      checkout.payment.selected_instrument_id = payment_instrument.root.id
-      checkout.payment.instruments = [payment_instrument]
+      checkout.payment.instruments = payment_instruments
 
       response = store.place_order(checkout_id)
       # clear completed checkout from state

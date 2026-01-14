@@ -23,7 +23,7 @@ class MockPaymentProcessor:
   """Mock Payment Processor simulating calls from Merchant Agent to MPP Agent."""
 
   def process_payment(
-      self, payment_data: PaymentInstrument, risk_data: Any | None = None
+      self, instruments: list[PaymentInstrument], risk_data: Any | None = None
   ):
     """Process the payment."""
     # this should invoke the Merchant Payment Processor to validate the payment
