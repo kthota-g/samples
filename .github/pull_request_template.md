@@ -40,7 +40,6 @@ files or fields:
 - [ ] **I have added `!` to my PR title** (e.g., `feat!: remove field`).
 - [ ] **I have added justification below.**
 
-
 ## Breaking Changes / Removal Justification
 
 (Please provide a detailed technical and strategic rationale here for why this
