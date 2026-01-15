@@ -62,7 +62,6 @@ jobs:
           VALIDATE_GIT_COMMITLINT: false
           VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           VALIDATE_JSCPD: false
-          BIOME_MAX_DIAGNOSTICS: 100
-          VALIDATE_JAVASCRIPT_ES: false
           VALIDATE_TYPESCRIPT_ES: false
-          VALIDATE_TSX_ES: false
+          VALIDATE_TYPESCRIPT_PRETTIER: false
+          VALIDATE_TSX: false
