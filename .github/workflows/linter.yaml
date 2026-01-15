@@ -63,4 +63,6 @@ jobs:
           VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           VALIDATE_JSCPD: false
           BIOME_MAX_DIAGNOSTICS: 100
-          DISABLE_ESLINT: true
+          VALIDATE_JAVASCRIPT_ES: false
+          VALIDATE_TYPESCRIPT_ES: false
+          VALIDATE_TSX_ES: false
