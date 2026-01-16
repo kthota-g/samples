@@ -1,4 +1,4 @@
-import {type Context} from 'hono';
+import type {Context} from 'hono';
 import * as z from 'zod';
 
 /**
@@ -11,8 +11,8 @@ import * as z from 'zod';
  */
 export function prettyValidation<T>(
   result:
-    | {success: true; data: T; target: string}
-    | {success: false; error: any},
+    | {success: true; data: T; target: string}    
+    | {success: false; error: z.ZodError},
   c: Context,
 ) {
   if (result.success) {

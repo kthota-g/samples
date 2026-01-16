@@ -1,6 +1,6 @@
-import {type Context} from 'hono';
+import type {Context} from 'hono';
 
-import {CheckoutService} from './checkout';
+import type {CheckoutService} from './checkout';
 
 export class TestingService {
   constructor(private readonly checkoutService: CheckoutService) {}
@@ -18,7 +18,7 @@ export class TestingService {
     try {
       await this.checkoutService.shipOrder(id);
       return c.json({status: 'shipped'}, 200);
-    } catch (e: any) {
+    } catch (e: unknown) {
       if (e.message === 'Order not found') {
         return c.json({detail: 'Order not found'}, 404);
       }
