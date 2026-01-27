@@ -1,10 +1,10 @@
 import {createHash} from 'crypto';
-import {type Context} from 'hono';
+import type {Context} from 'hono';
 import {v4 as uuidv4} from 'uuid';
 import {z} from 'zod';
 
 import {getCheckoutSession, getIdempotencyRecord, getInventory, getOrder, getProduct, logRequest, releaseStock, reserveStock, saveCheckout, saveIdempotencyRecord, saveOrder} from '../data';
-import {CheckoutResponseStatusSchema, type Expectation, type ExpectationLineItem, type ExtendedCheckoutCreateRequest, type ExtendedCheckoutResponse, type ExtendedCheckoutUpdateRequest, ExtendedPaymentCredentialSchema, type FulfillmentDestinationRequest, type FulfillmentDestinationResponse, type FulfillmentOptionResponse, type FulfillmentRequest, type FulfillmentResponse, type LineItemCreateRequest, type LineItemResponse, type Order, type OrderLineItem, type PaymentCreateRequest, PaymentDataSchema, type PostalAddress} from '../models';
+import {CheckoutResponseStatusSchema, type Expectation, type ExpectationLineItem, type ExtendedCheckoutCreateRequest, type ExtendedCheckoutResponse, type ExtendedCheckoutUpdateRequest, ExtendedPaymentCredentialSchema, type FulfillmentDestinationResponse, type FulfillmentOptionResponse, type FulfillmentRequest, type FulfillmentResponse, type LineItemResponse, type Order, type OrderLineItem, PaymentDataSchema, type PostalAddress} from '../models';
 
 /**
  * Schema for the request body when completing a checkout session.
@@ -71,11 +71,11 @@ export class CheckoutService {
         }
       }
 
-      if (profileData && profileData.ucp && profileData.ucp.capabilities) {
+      if (profileData?.ucp?.capabilities) {
         const orderCap = profileData.ucp.capabilities.find(
             (c) => c.name === 'dev.ucp.shopping.order',
         );
-        if (orderCap && orderCap.config && orderCap.config.webhook_url) {
+        if (orderCap?.config?.webhook_url) {
           return {webhook_url: orderCap.config.webhook_url};
         }
       }
@@ -93,7 +93,7 @@ export class CheckoutService {
       return;
     }
     const webhookUrl = checkout.platform.webhook_url;
-    let orderData: Order|undefined = undefined;
+    let orderData: Order|undefined ;
     if (checkout.order_id) {
       orderData = getOrder(checkout.order_id);
     }
@@ -163,13 +163,13 @@ export class CheckoutService {
                 id: d.id || `dest_${uuidv4()}`,
               }),
           );
-        } else if (existingFulfillment && existingFulfillment.methods) {
+        } else if (existingFulfillment?.methods) {
           // Default to shipping if type is not provided in request
           const targetType = m.type || 'shipping';
           const existingMethod = existingFulfillment.methods.find(
               (em) => em.type === targetType,
           );
-          if (existingMethod && existingMethod.destinations) {
+          if (existingMethod?.destinations) {
             destinations = existingMethod.destinations;
           }
         }
