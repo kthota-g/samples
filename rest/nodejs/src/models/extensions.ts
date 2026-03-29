@@ -1,6 +1,6 @@
 import {z} from 'zod';
 
-import {CheckoutCreateRequestSchema, CheckoutUpdateRequestSchema, CheckoutWithBuyerConsentSchema, CheckoutWithDiscountSchema, CheckoutWithFulfillmentCreateRequestSchema, CheckoutWithFulfillmentResponseSchema, CheckoutWithFulfillmentUpdateRequestSchema, FulfillmentDestinationResponseSchema, OrderSchema, PaymentCredentialSchema} from './spec_generated';
+import {CheckoutCreateRequestSchema, CheckoutUpdateRequestSchema, CheckoutWithBuyerConsentSchema, CheckoutWithDiscountSchema, CheckoutWithFulfillmentCreateRequestSchema, CheckoutWithFulfillmentResponseSchema, CheckoutWithFulfillmentUpdateRequestSchema, OrderSchema, PaymentCredentialSchema} from './spec_generated';
 
 export const ExtendedPaymentCredentialSchema = PaymentCredentialSchema.extend({
   token: z.string().optional(),
